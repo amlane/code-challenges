@@ -15,6 +15,8 @@ var smallestMissingMultipleOfK = function(nums, k){
     }
 };
 
+// this solution ran with 0ms and beat 100% of other solutions and uses less memory compared to the Set solution below
+
 console.log(smallestMissingMultipleOfK([8,2,3,4,6], 2)) // 10
 console.log(smallestMissingMultipleOfK([1,4,7,10,15], 5)) // 5
 console.log(smallestMissingMultipleOfK([8,12,3,4,6], 2)) // 2
