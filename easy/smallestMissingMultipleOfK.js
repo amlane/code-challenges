@@ -25,11 +25,8 @@ var smallestMissingMultipleOfKSet = function(nums, k){
     let num = k;
     
     while(true){
-        if(numsSet.has(num)){
-            num += k;
-        } else {
-            return num;  
-        }
+        if(!numsSet.has(num)) return num; 
+        num += k;
     }
 };
 
