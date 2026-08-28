@@ -74,7 +74,30 @@ class LinkedList {
     }
     return output;
   }
+
+  delete(val) {
+    let current = this.head;
+    let prev = null;
+
+    while (val != current.value) {
+      prev = current;
+      current = current.next;
+    }
+    if (prev === null) {
+      this.head = current.next;
+    } else {
+      prev.next = current.next;
+    }
+    this.size--;
+  }
 }
+
+const l0 = new LinkedList();
+l0.append(7);
+l0.append(4);
+l0.append(5);
+l0.delete(7); // delete the head, the hardest case
+l0.printlist(); // 4 -> 5
 
 const l1 = new LinkedList();
 
