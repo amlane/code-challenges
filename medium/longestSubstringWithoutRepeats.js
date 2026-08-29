@@ -98,11 +98,9 @@ var lengthOfLongestSubstring3 = function (s) {
     if (!dict[s[r]]) {
       dict[s[r]] = true;
       maxLen = Math.max(maxLen, r - l + 1);
-      // console.log(s[r], l, r, maxLen, dict);
       r++;
     } else {
       dict[s[l]] = false;
-      console.log(s[r], l, r, maxLen, dict);
       l++;
     }
   }
