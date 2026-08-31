@@ -120,6 +120,37 @@ var romanToInt = function (s) {
   return total;
 };
 
-console.log(romanToInt("III")); // 3
-console.log(romanToInt("LVIII")); // 50 + 5 + 1 + 1 + 1 = 58
-console.log(romanToInt("MCMXCIV")); // 1000 + 900 + 90 + 4 = 1994
+// console.log(romanToInt("III")); // 3
+// console.log(romanToInt("LVIII")); // 50 + 5 + 1 + 1 + 1 = 58
+// console.log(romanToInt("MCMXCIV")); // 1000 + 900 + 90 + 4 = 1994
+
+// 2nd approach
+
+var romanToIntAlternativeSolution = function (s) {
+  const dict = {
+    I: 1,
+    V: 5,
+    X: 10,
+    L: 50,
+    C: 100,
+    D: 500,
+    M: 1000,
+  };
+  let total = 0;
+
+  for (let i = 0; i < s.length; i++) {
+    let curr = dict[s[i]];
+    let next = dict[s[i + 1]];
+
+    if (next > curr) {
+      total -= curr;
+    } else {
+      total += curr;
+    }
+  }
+  return total;
+};
+
+console.log(romanToIntAlternativeSolution("III")); // 3
+console.log(romanToIntAlternativeSolution("LVIII")); // 50 + 5 + 1 + 1 + 1 = 58
+console.log(romanToIntAlternativeSolution("MCMXCIV")); // 1000 + 900 + 90 + 4 = 1994
