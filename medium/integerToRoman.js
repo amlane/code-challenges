@@ -10,15 +10,62 @@ Constraints:
 
 1 <= num <= 3999
 
+  const dict = {
+    1: "I",
+    4: "IV",
+    5: "V",
+    9: "IX",
+    10: "X",
+    40: "XL",
+    50: "L",
+    90: "XC",
+    100: "C",
+    400: "CD",
+    500: "D",
+    900: "CM",
+    1000: "M"
+  };
+
 */
 
-/**
+/*
  * @param {number} num
  * @return {string}
  */
-var intToRoman = function (num) {};
 
-console.log(intToRoman("1")); // I
-console.log(intToRoman("1994")); // I
-console.log(intToRoman("1")); // I
-console.log(intToRoman("1")); // I
+var intToRoman = function (num) {
+  const dict = {
+    1: "I",
+    4: "IV",
+    5: "V",
+    9: "IX",
+    10: "X",
+    40: "XL",
+    50: "L",
+    90: "XC",
+    100: "C",
+    400: "CD",
+    500: "D",
+    900: "CM",
+    1000: "M",
+  };
+  let maxValues = [1, 4, 5, 9, 10, 40, 50, 90, 100, 400, 500, 900];
+  let currMaxVal = 1000;
+  let result = "";
+
+  while (maxValues.length > 0 || num > 0) {
+    if (num >= currMaxVal) {
+      num = num - currMaxVal;
+      result += dict[currMaxVal];
+    } else {
+      currMaxVal = maxValues.pop();
+    }
+  }
+  return result;
+};
+
+console.log(intToRoman("2")); // II
+console.log(intToRoman("1994")); // MCMXCIV
+console.log(intToRoman("58")); // LVIII
+console.log(intToRoman("3749")); // MMMDCCXLIX
+console.log(intToRoman("3947")); // MMMCMXLVII
