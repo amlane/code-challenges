@@ -18,7 +18,6 @@ X can be placed before L (50) and C (100) to make 40 and 90.
 C can be placed before D (500) and M (1000) to make 400 and 900.
 Given a roman numeral, convert it to an integer.
 
- 
 
 Example 1:
 
@@ -42,4 +41,85 @@ Constraints:
 1 <= s.length <= 15
 s contains only the characters ('I', 'V', 'X', 'L', 'C', 'D', 'M').
 It is guaranteed that s is a valid roman numeral in the range [1, 3999].
+
+Base values:
+I             1
+V             5
+X             10
+L             50
+C             100
+D             500
+M             1000
+
+Subtraction cases
+I can be placed before V (5) and X (10) to make 4 and 9. 
+X can be placed before L (50) and C (100) to make 40 and 90. 
+C can be placed before D (500) and M (1000) to make 400 and 900.
+
+  const dict = {
+    I: 1,
+    IV: 4,
+    V: 5,
+    IX: 9,
+    X: 10,
+    XL: 40,
+    L: 50,
+    XC: 90,
+    C: 100,
+    CD: 400,
+    D: 500,
+    CM: 900,
+    M: 1000
+  };
+
+Roman numerals are generally written from largest to smallest so with that logic in mind...
+if you find a preceeding letter to be less than rather than greater than or equal to, then you know to subtract those values rather than add. 
+(e.g. IV is I - V = 4, VI is V+ I = 6)
 */
+
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var romanToInt = function (s) {
+  let total = 0;
+  let l = 0;
+  let r = 1;
+  let lenCount = s.length;
+
+  const dict = {
+    I: 1,
+    IV: 4,
+    V: 5,
+    IX: 9,
+    X: 10,
+    XL: 40,
+    L: 50,
+    XC: 90,
+    C: 100,
+    CD: 400,
+    D: 500,
+    CM: 900,
+    M: 1000,
+  };
+
+  while (lenCount) {
+    if (s[l] + s[r] in dict) {
+      total += dict[s[l] + s[r]];
+      l++;
+      r++;
+      lenCount--;
+    } else {
+      total += dict[s[l]];
+    }
+    l++;
+    r++;
+    lenCount--;
+  }
+
+  return total;
+};
+
+console.log(romanToInt("III")); // 3
+console.log(romanToInt("LVIII")); // 50 + 5 + 1 + 1 + 1 = 58
+console.log(romanToInt("MCMXCIV")); // 1000 + 900 + 90 + 4 = 1994
