@@ -10,8 +10,6 @@ For example, the binary number 101 equals 5 in decimal because:
 */
 
 function toDecimal(binary) {
-  // optional error handling - check that binary is a str to avoid failures using .length
-  // 2nd check that string only contains 1s and 0s using a regex
   const valCheck = /^[01]+$/;
   if (typeof binary !== "string" || !valCheck.test(binary)) {
     throw new Error(
@@ -34,7 +32,7 @@ console.log(toDecimal("101")); // 5
 console.log(toDecimal("1010")); // 10
 console.log(toDecimal("10010")); // 18
 console.log(toDecimal("1010101")); // 85
-console.log(toDecimal("0")); // 0
+console.log(toDecimal("-0")); // 0
 // console.log(toDecimal(22)); // Error
 // console.log(toDecimal("10px")); // Error
 // console.log(toDecimal("Pizza")); // Error
