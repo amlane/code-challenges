@@ -1,0 +1,24 @@
+{
+  "name": "code-challenges",
+  "version": "1.0.0",
+  "description": "Leetcode and FreeCodeCamp code challenge solutions",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amlane/code-challenges.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/amlane/code-challenges/issues"
+  },
+  "homepage": "https://github.com/amlane/code-challenges#readme",
+  "devDependencies": {
+    "jest": "^30.5.2"
+  }
+}
