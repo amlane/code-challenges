@@ -23,7 +23,7 @@ function checkStrength(password) {
 
   const containsUpperAndLower = /^(?=.*[a-z])(?=.*[A-Z]).+$/;
   const containsNum = /\d/;
-  const containsSpecialChar = /[!@#$%^&*]/;
+  const containsSpecialChar = /[!@#$%^&\*]/;
 
   if (password.length >= 8) passwordScore += 1;
   if (containsUpperAndLower.test(password)) passwordScore += 1;
