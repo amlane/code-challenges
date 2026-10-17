@@ -1,14 +1,3 @@
-/* 
-Tests:
-battle("hello world", "hello word") should return "We win".
-battle("Hello world", "hello world") should return "We win".
-battle("lorem ipsum", "kitty ipsum") should return "We lose".
-battle("hello world", "world hello") should return "Draw".
-battle("git checkout", "git switch") should return "We win".
-battle("Cheeseburger with fries", "Cheeseburger with Fries") should return "We lose".
-battle("We must never surrender", "Our team must win") should return "Draw".
-*/
-
 const battle = require("../battleOfWords.js");
 
 test('battle("hello world", "hello word") should return "We win"', () => {

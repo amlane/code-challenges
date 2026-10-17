@@ -1,17 +1,3 @@
-/*
-Tests:
-validate("a@b.cd") should return true.
-validate("hell.-w.rld@example.com") should return true.
-validate(".b@sh.rc") should return false.
-validate("example@test.c0") should return false.
-validate("freecodecamp.org") should return false.
-validate("develop.ment_user@c0D!NG.R.CKS") should return true.
-validate("hello.@wo.rld") should return false.
-validate("hello@world..com") should return false.
-validate("develop..ment_user@c0D!NG.R.CKS") should return false.
-validate("git@commit@push.io") should return false. 
-*/
-
 const { validateWithRegex, validate } = require("../emailValidator.js");
 
 test('validateWithRegex("a@b.cd") should return true', () => {

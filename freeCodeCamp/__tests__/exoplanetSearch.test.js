@@ -1,13 +1,3 @@
-/*
-Tests:
-hasExoplanet("665544554") should return false.
-hasExoplanet("FGFFCFFGG") should return true.
-hasExoplanet("MONOPLONOMONPLNOMPNOMP") should return false.
-hasExoplanet("FREECODECAMP") should return true.
-hasExoplanet("9AB98AB9BC98A") should return false.
-hasExoplanet("ZXXWYZXYWYXZEGZXWYZXYGEE") should return true.
-*/
-
 const hasExoplanet = require("../exoplanetSearch.js");
 
 test('hasExoplanet("665544554") should return false', () => {

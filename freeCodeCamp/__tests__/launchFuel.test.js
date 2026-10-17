@@ -1,12 +1,3 @@
-/*
-Tests:
-launchFuel(50) should return 12.4.
-launchFuel(500) should return 124.8.
-launchFuel(243) should return 60.7.
-launchFuel(11000) should return 2749.8.
-launchFuel(6214) should return 1553.4.
-*/
-
 const launchFuel = require("../launchFuel.js");
 
 test("Input of 50 should return 12.4", () => {

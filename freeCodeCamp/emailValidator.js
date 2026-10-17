@@ -33,6 +33,7 @@ function validateWithRegex(email) {
   return regex.test(email);
 }
 
+// this solution may be longer/more lines of code but the custom business logic is clear, readable and easier to extend rules and maintain
 function validate(email) {
   const index = email.indexOf("@");
   if (index === -1 || email.indexOf("@", index + 1) !== -1) return false;
