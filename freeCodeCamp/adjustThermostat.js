@@ -18,7 +18,23 @@ adjustThermostat(59, 22) should return "Heat: 12.6 degrees Fahrenheit".
 */
 
 function adjustThermostat(currentF, targetC) {
-  return currentF;
+  function convertCtoF(temp) {
+    return temp * 1.8 + 32;
+  }
+  // 32 F, 0 C
+  const target = convertCtoF(targetC);
+
+  switch (true) {
+    case currentF === target:
+      return "Hold";
+      break;
+    case currentF > target:
+      return `Cool: ${(currentF - target).toFixed(1)} degrees Fahrenheit`;
+      break;
+    case currentF < target:
+      return `Heat: ${(target - currentF).toFixed(1)} degrees Fahrenheit`;
+      break;
+  }
 }
 
 module.exports = adjustThermostat;
