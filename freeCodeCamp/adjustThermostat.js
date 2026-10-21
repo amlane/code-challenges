@@ -21,7 +21,6 @@ function adjustThermostat(currentF, targetC) {
   function convertCtoF(temp) {
     return temp * 1.8 + 32;
   }
-  // 32 F, 0 C
   const target = convertCtoF(targetC);
 
   switch (true) {
