@@ -1,10 +1,24 @@
-# Generate a *.test.js file containing tests
-# calculateTips("$10.00", "25%") should return ["$1.50", "$2.00", "$2.50"].
-# calculateTips("$89.67", "26%") should return ["$13.45", "$17.93", "$23.31"].
-# calculateTips("$19.85", "9%") should return ["$2.98", "$3.97", "$1.79"]
+#!/usr/bin/env python3
 
 from pathlib import Path
 import ast
+import sys
+
+# TO DO - update to arg parse with help instructions
+file_name = sys.argv[1]
+
+def extractTests(file_path):
+    with open(file_path, "r", encoding="utf-8") as file:
+        content = file.readlines()
+    startIndex = content.index("Tests:\n" ) + 1
+    endIndex = content.index("*/\n")
+
+    tests = []
+    for i in range(startIndex, endIndex):
+        if content[i].endswith(".\n"):
+            content[i] = content[i][:-2]
+        tests.append(content[i])
+    return tests
 
 def check_python_string_type(data_string):
     try:
@@ -19,24 +33,19 @@ def check_python_string_type(data_string):
         return "Malformed or unsafe string literal"
 
 
-def write_file(test_dir, test_file_name, file_contents):
-    with open(Path(test_dir, test_file_name + ".test.js") , "w", encoding="utf-8") as file:
+def write_file(test_dir, file_contents):
+    with open(Path(test_dir) , "w", encoding="utf-8") as file:
         file.write(file_contents)
 
-tests = """
-calculateTips("$10.00", "25%") should return ["$1.50", "$2.00", "$2.50"].
-calculateTips("$89.67", "26%") should return ["$13.45", "$17.93", "$23.31"].
-calculateTips("$19.85", "9%") should return ["$2.98", "$3.97", "$1.79"]
-"""
 
-def main(tests):
+def main():
     home = Path.home()
-    test_dir = Path(f"{home}/Coding/code-challenges/freeCodeCamp/__tests__")
+    base_path = Path("/Coding/code-challenges/freeCodeCamp")
+    test_dir = Path(f"{home}{base_path}/__tests__/{file_name.replace('.js', '.test.js')}")
+    file_path = Path(f"{home}{base_path}/{file_name}")
 
-    test_list = [line for line in tests.splitlines() if line.strip()]
-    test_file_name = test_list[0].split("(")[0];
-
-    file_contents = f"const {test_file_name} = require('../{test_file_name}.js');\n"
+    test_list = extractTests(file_path)
+    file_contents = f"const {file_name.replace('.js', '')} = require('../{file_name}');\n"
 
     for test in test_list:
         if test[-1] == ".":
@@ -50,7 +59,7 @@ def main(tests):
 }})"""
         file_contents += f"\n{test_template}\n"
         
-    write_file(test_dir, test_file_name, file_contents)
+    write_file(test_dir, file_contents)
 
 if __name__ == "__main__":
-    main(tests)
+    main()
