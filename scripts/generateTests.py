@@ -17,6 +17,8 @@ def extractTests(file_path):
     for i in range(startIndex, endIndex):
         if content[i].endswith(".\n"):
             content[i] = content[i][:-2]
+        elif content[i].endswith("\n"):
+            content[i] = content[i][:-1]
         tests.append(content[i])
     return tests
 
@@ -48,8 +50,6 @@ def main():
     file_contents = f"const {file_name.replace('.js', '')} = require('../{file_name}');\n"
 
     for test in test_list:
-        if test[-1] == ".":
-            test = test[:-1]
         io_list = test.split(" should return ")
         expectFunc = io_list[0]
         to_be = io_list[1]
