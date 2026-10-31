@@ -25,18 +25,31 @@ navigate(["Visit About Us", "Visit Visit Us", "Forward", "Visit Contact Us", "Ba
 
 function navigate(commands) {
   // ["Visit About Us", "Back", "Forward"]
+  // 0 -> -1 -> 0
   // Home -> About Us -> Home -> About Us
-
   // ["Visit About Us", "Visit Gallery", "Back", "Back"]
+  //  0 -> 1 -> 0 -> -1
   // Home -> About Us -> Gallery -> About Us -> Home
-
   // ["Visit About Us", "Visit Visit Us", "Forward", "Visit Contact Us", "Back"]
+  // -1 -> 0 -> 1 -> 1 -> 2 -> 1
   // Home -> About Us -> Visit Us -> Visit Us -> Contact Us -> Visit Us
-
   // ["Visit About", "Visit Gallery", "Back", "Visit Contact", "Forward"]
+  // 0 -> 1 -> 0 -> 3 -> 3
   // Home -> About -> Gallery -> About -> Contact -> Contact
-
-  return commands;
+  // ["Visit About", "Visit Gallery", "Back", "Forward", "Visit Contact", "Forward"]
+  // 0 -> 1 -> 0 -> 1 -> 4 -> 4
+  // Home -> About -> Gallery -> About -> Gallery -> Contact -> Contact
 }
+
+console.log(navigate(["Visit About Us", "Back", "Forward"]));
+console.log(
+  navigate([
+    "Visit About Us",
+    "Visit Visit Us",
+    "Forward",
+    "Visit Contact Us",
+    "Back",
+  ]),
+);
 
 module.exports = navigate;
