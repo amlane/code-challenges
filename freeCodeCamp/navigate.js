@@ -24,18 +24,32 @@ navigate(["Visit About Us", "Visit Visit Us", "Forward", "Visit Contact Us", "Ba
 */
 
 function navigate(commands) {
-  return commands;
-}
+  let history = ["Home"];
 
-console.log(navigate(["Visit About Us", "Back", "Forward"]));
-console.log(
-  navigate([
-    "Visit About Us",
-    "Visit Visit Us",
-    "Forward",
-    "Visit Contact Us",
-    "Back",
-  ]),
-);
+  let backIndex = 0;
+  let forwardIndex = null;
+
+  commands.forEach((cmd, index) => {
+    if (cmd !== "Back" && cmd !== "Forward") {
+      history.push(cmd.replace("Visit ", ""));
+      backIndex = index;
+      forwardIndex = null;
+    }
+    if (cmd === "Back") {
+      history.push(history[backIndex]);
+      backIndex--;
+      forwardIndex = index;
+    }
+    if (cmd === "Forward") {
+      backIndex++;
+      if (forwardIndex) {
+        history.push(history[forwardIndex]);
+      } else {
+        history.push(history[index]);
+      }
+    }
+  });
+  return history.pop();
+}
 
 module.exports = navigate;
