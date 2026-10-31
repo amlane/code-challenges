@@ -2,8 +2,9 @@
 SpOoKy~CaSe
 Given a string representing a variable name, convert it to "spooky case" using the following constraints:
 
-Replace all underscores (_), and hyphens (-) with a tilde (~).
-Capitalize the first letter of the string, and every other letter after that. Ignore the tilde character when counting. Make all other letters lowercase.
+- Replace all underscores (_), and hyphens (-) with a tilde (~).
+- Capitalize the first letter of the string, and every other letter after that. Ignore the tilde character when counting. Make all other letters lowercase.
+
 For example, given hello_world, return HeLlO~wOrLd.
 
 Tests:
@@ -15,7 +16,22 @@ spookify("thE_hAUntEd-hOUsE-Is-fUll_Of_ghOsts") should return "ThE~hAuNtEd~HoUsE
 */
 
 function spookify(boo) {
-  return boo;
+  const cleanedStr = boo.replace(/-|_/g, "~").toLowerCase();
+  const strArr = cleanedStr.split("");
+  let prevCapped = false;
+
+  for (let i = 0; i < strArr.length; i++) {
+    if (strArr[i] !== "~") {
+      if (!prevCapped) {
+        strArr[i] = strArr[i].toUpperCase();
+        prevCapped = true;
+      } else {
+        prevCapped = false;
+      }
+    }
+  }
+
+  return strArr.join("");
 }
 
 module.exports = spookify;
