@@ -19,8 +19,6 @@ function nthPrime(n) {
   let currCand = 3;
 
   while (n > numberList.length) {
-    // modulos every number in numberList against currCand to see if anything returns anything besides 0
-    // if returns anything besides 0 for every number, the number is prime
     let hasRemainder = true;
     for (let i = 0; i < numberList.length; i++) {
       if (currCand % numberList[i] === 0) {
