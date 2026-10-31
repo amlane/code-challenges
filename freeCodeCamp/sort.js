@@ -20,6 +20,15 @@ sort(["simon@beta.com", "sammy@alpha.com", "Sarah@Alpha.com", "SAM@ALPHA.com", "
 */
 
 function sort(emails) {
+  emails.sort((a, b) => {
+    const splitA = a.split("@");
+    const splitB = b.split("@");
+    return (
+      splitA[1].localeCompare(splitB[1], undefined, { sensitivity: "base" }) ||
+      splitA[0].localeCompare(splitB[0], undefined, { sensitivity: "base" })
+    );
+  });
+
   return emails;
 }
 
