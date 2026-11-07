@@ -17,7 +17,46 @@ In this exercise, you will define a `findAll(..)` function that searches an arra
 	- objects only match the exact same object
 */
 
-function findAll(value, arr) {}
+function findAll(value, arr) {
+  const result = [];
+
+  function checkNegZero(val) {
+    return Object.is(0, val);
+  }
+
+  for (let i = 0; i < arr.length; i++) {
+    let match = arr[i];
+
+    if (Object.is(value, match)) {
+      result.push(match);
+    } else if (match == null && value == null) {
+      result.push(match);
+    } else if (typeof value === "boolean") {
+      if (value === match) result.push(match);
+    } else if (
+      typeof value === "string" &&
+      value.trim() !== "" &&
+      typeof match === "number" &&
+      !Object.is(-0, match)
+    ) {
+      if (match == value) result.push(match);
+    } else if (
+      typeof value == "number" &&
+      !Object.is(value, -0) &&
+      !Object.is(value, NaN) &&
+      !Object.is(value, Infinity) &&
+      !Object.is(value, -Infinity) &&
+      typeof match == "string" &&
+      match.trim() != ""
+    ) {
+      if (match == value) {
+        result.push(match);
+      }
+    }
+  }
+
+  return result;
+}
 
 // tests:
 var myObj = { a: 2 };
