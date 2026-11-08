@@ -31,12 +31,12 @@ function findAll(value, arr) {
       result.push(match);
     } else if (match == null && value == null) {
       result.push(match);
-    } else if (typeof value === "boolean") {
-      if (value === match) result.push(match);
+    } else if (typeof value == "boolean" && typeof match == "boolean") {
+      if (value == match) result.push(match);
     } else if (
-      typeof value === "string" &&
-      value.trim() !== "" &&
-      typeof match === "number" &&
+      typeof value == "string" &&
+      value.trim() != "" &&
+      typeof match == "number" &&
       !Object.is(-0, match)
     ) {
       if (match == value) result.push(match);
