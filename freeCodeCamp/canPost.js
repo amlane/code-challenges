@@ -13,7 +13,16 @@ canPost("This message is too long to fit into either of the character limits for
 */
 
 function canPost(message) {
-  return message;
+  switch (true) {
+    case message.length <= 40:
+      return "short post";
+      break;
+    case message.length > 40 && message.length <= 80:
+      return "long post";
+      break;
+    default:
+      return "invalid post";
+  }
 }
 
 module.exports = canPost;
