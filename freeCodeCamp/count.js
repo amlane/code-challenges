@@ -19,7 +19,7 @@ count("The quick brown fox jumps over the lazy dog.") should return [11, 24].
 
 /*
 Using Sets since they have a constant time lookup O(1) when using .has() method (on average).
-Tradeoff is that a set will slightly more memory than an array due to hashing overhead but it would be negligible since the size is fixed at 5.
+Tradeoff is that a set will use slightly more memory than an array due to hashing overhead but it would be negligible since the size is fixed at 5.
 Using a Set gives O(1) lookup per character versus O(k) for an array scan, where k is the number of vowels (5). Since k is fixed, both approaches are O(n) overall, so this is a constant-factor improvement rather than an asymptotic one. It also scales better if the lookup list ever grows.
 
 I would want to clarify with stakeholder for case of sometimes y if no other vowels, such as "by" or "fly".
