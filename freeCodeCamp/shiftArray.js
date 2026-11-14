@@ -33,6 +33,17 @@ function shiftArray(arr, n) {
       .concat(arr.slice(0, arr.length - index));
   }
 }
+
+This is a great example of how % in JavaScript is a remainder operator and not a true mathematical modulo. 
+You can test this by comparing the output for -1 % 5 in a calculator vs a JavaScript program. You will get 1 and -2 respectively. 
+
+This is because JavaScript inherited the behavior from C. C did it because CPUs' integer division hardware truncates toward zero. Making % match that was the fastest and simplest choice. Python's creator chose flooring instead, because the result is more useful for things like wrapping indexes, since the sign always follows the divisor.
+
+This will only be apparent with negative numbers and is a good gotcha to be aware of between languages. 
+
+A useful way to remember it is that, with JavaScript, the result of % always takes the sign of the left number (the dividend). That's why -11 % 3 is negative. The ((n % len) + len) % len trick is just a patch that converts JavaScript's remainder into a true modulo.
+
+Calculators aren't consistent on this either. Some use truncation and some use flooring, which is why the same keystrokes can give different answers on different devices. If you ever need to know which one you're dealing with, test -1 mod 5. A true modulo gives 4, and a remainder gives -1.
 */
 
 // More optimal solution, removing the need for positive/negative branching by normalizing shift into a single left-shift offset
