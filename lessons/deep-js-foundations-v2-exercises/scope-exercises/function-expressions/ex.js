@@ -1,22 +1,3 @@
-/*
-1. `printRecords(..)` should:
-	- take a list of student Ids
-	- retrieve each student record by its student Id (hint: array `find(..)`)
-	- sort by student name, ascending (hint: array `sort(..)`)
-	- print each record to the console, including `name`, `id`, and `"Paid"` or `"Not Paid"` based on their paid status
-
-2. `paidStudentsToEnroll()` should:
-	- look through all the student records, checking to see which ones are paid but **not yet enrolled**
-	- collect these student Ids
-	- return a new array including the previously enrolled student Ids as well as the to-be-enrolled student Ids (hint: spread `...`)
-
-3. `remindUnpaid(..)` should:
-	- take a list of student Ids
-	- filter this list of student Ids to only those whose records are in unpaid status
-	- pass the filtered list to `printRecords(..)` to print the unpaid reminders
-
-*/
-
 function printRecords(recordIds) {
   let results = recordIds
     .map(function mapStudentRecords(id) {

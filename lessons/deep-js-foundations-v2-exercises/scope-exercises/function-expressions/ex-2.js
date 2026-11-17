@@ -1,13 +1,31 @@
 function printRecords(recordIds) {
-  // TODO
+  let results = recordIds
+    .map((id) => studentRecords.find((user) => user.id === id))
+    .sort((a, b) => a.name.localeCompare(b.name))
+    .forEach((r) =>
+      console.log(`${r.name} (${r.id}): ${r.paid ? "Paid" : "Not Paid"}`),
+    );
 }
 
 function paidStudentsToEnroll() {
-  // TODO
+  const ids = [];
+  studentRecords.forEach((r) => {
+    if (currentEnrollment.indexOf(r.id) === -1 && r.paid) ids.push(r.id);
+  });
+  return [...currentEnrollment, ...ids];
 }
 
 function remindUnpaid(recordIds) {
-  // TODO
+  let unpaidEnrollments = recordIds
+    .map((id) => studentRecords.find((user) => user.id === id))
+    .map((pd) => {
+      if (!pd.paid) {
+        return pd.id;
+      }
+    })
+    .filter(Boolean);
+
+  printRecords(unpaidEnrollments);
 }
 
 // ********************************
