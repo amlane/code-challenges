@@ -8,21 +8,15 @@ const printRecords = (recordIds) =>
       console.log(`${r.name} (${r.id}): ${r.paid ? "Paid" : "Not Paid"}`),
     );
 
-const paidStudentsToEnroll = () => {
-  const ids = [];
-  studentRecords.forEach((r) => {
-    if (r.paid && currentEnrollment.includes(r.id)) ids.push(r.id);
-  });
-  return [...currentEnrollment, ...ids];
-};
+const paidStudentsToEnroll = () => [
+  ...currentEnrollment,
+  ...studentRecords
+    .filter((r) => r.paid && currentEnrollment.includes(r.id))
+    .map((record) => record.id),
+];
 
 const remindUnpaid = (recordIds) => {
-  const unpaidEnrollments = recordIds.filter((id) => {
-    const record = getRecordById(id);
-    return !record.paid;
-  });
-
-  printRecords(unpaidEnrollments);
+  printRecords(recordIds.filter((id) => !getRecordById(id).paid));
 };
 
 // ********************************
