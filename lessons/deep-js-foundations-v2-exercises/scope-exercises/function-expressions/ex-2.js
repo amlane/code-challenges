@@ -1,32 +1,29 @@
-function printRecords(recordIds) {
-  let results = recordIds
-    .map((id) => studentRecords.find((user) => user.id === id))
+const getRecordById = (id) => studentRecords.find((user) => user.id === id);
+
+const printRecords = (recordIds) =>
+  recordIds
+    .map(getRecordById)
     .sort((a, b) => a.name.localeCompare(b.name))
     .forEach((r) =>
       console.log(`${r.name} (${r.id}): ${r.paid ? "Paid" : "Not Paid"}`),
     );
-}
 
-function paidStudentsToEnroll() {
+const paidStudentsToEnroll = () => {
   const ids = [];
   studentRecords.forEach((r) => {
-    if (currentEnrollment.indexOf(r.id) === -1 && r.paid) ids.push(r.id);
+    if (r.paid && currentEnrollment.includes(r.id)) ids.push(r.id);
   });
   return [...currentEnrollment, ...ids];
-}
+};
 
-function remindUnpaid(recordIds) {
-  let unpaidEnrollments = recordIds
-    .map((id) => studentRecords.find((user) => user.id === id))
-    .map((pd) => {
-      if (!pd.paid) {
-        return pd.id;
-      }
-    })
-    .filter(Boolean);
+const remindUnpaid = (recordIds) => {
+  const unpaidEnrollments = recordIds.filter((id) => {
+    const record = getRecordById(id);
+    return !record.paid;
+  });
 
   printRecords(unpaidEnrollments);
-}
+};
 
 // ********************************
 
