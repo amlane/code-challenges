@@ -1,10 +1,12 @@
+function getRecordById(id) {
+  return studentRecords.find(function findRecordById(user) {
+    return user.id === id;
+  });
+}
+
 function printRecords(recordIds) {
-  let results = recordIds
-    .map(function mapStudentRecords(id) {
-      return studentRecords.find(function findRecordById(user) {
-        return user.id === id;
-      });
-    })
+  let results = recordIds.map(getRecordById);
+  results
     .sort(function sortByName(a, b) {
       return a.name.localeCompare(b.name);
     })
@@ -16,25 +18,16 @@ function printRecords(recordIds) {
 function paidStudentsToEnroll() {
   const ids = [];
   studentRecords.forEach(function enrollPaidStudents(r) {
-    if (currentEnrollment.indexOf(r.id) === -1 && r.paid) ids.push(r.id);
+    if (r.paid && currentEnrollment.includes(r.id)) ids.push(r.id);
   });
   return [...currentEnrollment, ...ids];
 }
 
 function remindUnpaid(recordIds) {
-  let unpaidEnrollments = recordIds
-    .map(function mapStudentRecords(id) {
-      return studentRecords.find(function findUsersById(user) {
-        return user.id === id;
-      });
-    })
-    .map(function findUnpaidEnrollments(pd) {
-      if (!pd.paid) {
-        return pd.id;
-      }
-    })
-    .filter(Boolean);
-
+  const unpaidEnrollments = recordIds.filter(function notYetPaid(id) {
+    const record = getRecordById(id);
+    return !record.paid;
+  });
   printRecords(unpaidEnrollments);
 }
 
