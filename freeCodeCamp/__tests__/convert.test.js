@@ -31,3 +31,7 @@ test('convert("####### My level 7 heading") should return "Invalid format"', () 
 test('convert("## My #2 heading") should return "<h2>My #2 heading</h2>"', () => {
   expect(convert("## My #2 heading")).toBe("<h2>My #2 heading</h2>");
 });
+
+test('convert("My #1 heading") should return "Invalid format"', () => {
+  expect(convert("My #1 heading")).toBe("Invalid format");
+});
