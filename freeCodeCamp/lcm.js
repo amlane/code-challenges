@@ -33,12 +33,12 @@ By definition, the least common multiple of non-zero integers is always the smal
 
 Error handling:
     - Number.isSafeInteger protects against inputs that are not whole numbers that are less than the max safe integer in JavaScript. Additional handling could be added for BigInt inputs or coercing strings. 
-    - When both inputs are 0 to avoid dividing 0 by 0 which is undefined/indeterminate. 
+    - When both inputs are 0 to avoid dividing 0 by 0 which is undefined/indeterminate. This is a design decision and could return undefined/NaN if the spec included it. I decided to go with the mathematical result. 
 */
 
 function gcd(a, b) {
   while (b > 0) {
-    prev = b;
+    let prev = b;
     b = a % b;
     a = prev;
   }
