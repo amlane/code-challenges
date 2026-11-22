@@ -17,7 +17,15 @@ isPangram("The quick brown fox jumps over the lazy dog.", "abcdefghijklmnopqrstu
 */
 
 function isPangram(sentence, letters) {
-  return sentence;
+  var cleanedSentence = new Set(
+    sentence
+      .replace(/[^a-zA-Z]/g, "")
+      .toLowerCase()
+      .split(""),
+  );
+  var setB = new Set(letters.split(""));
+
+  return cleanedSentence.symmetricDifference(setB).size === 0;
 }
 
 module.exports = isPangram;
