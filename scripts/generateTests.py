@@ -3,6 +3,7 @@
 from pathlib import Path
 import ast
 import sys
+import json
 
 # TO DO - update to arg parse with help instructions
 file_name = sys.argv[1]
@@ -25,14 +26,16 @@ def extractTests(file_path):
 def check_python_string_type(data_string):
     try:
         parsed_data = ast.literal_eval(data_string)
-        
-        if isinstance(parsed_data, list) or isinstance(parsed_data, dict):
-            return "toStrictEqual"
-        else:
-            return "toBe"
-            
     except (ValueError, SyntaxError):
-        return "Malformed or unsafe string literal"
+        # Fall back to JSON for lowercase true/false/null
+        try:
+            parsed_data = json.loads(data_string)
+        except (ValueError, SyntaxError):
+            return "Malformed or unsafe string literal"
+
+    if isinstance(parsed_data, (list, dict)):
+        return "toStrictEqual"
+    return "toBe"
 
 
 def write_file(test_dir, file_contents):
