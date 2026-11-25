@@ -91,3 +91,31 @@ test('fizzBuzz(50) should return [1, 2, "Fizz", 4, "Buzz", "Fizz", 7, 8, "Fizz",
     "Buzz",
   ]);
 });
+
+test('fizzBuzz("2") should return [1, 2]', () => {
+  expect(fizzBuzz("2")).toStrictEqual([1, 2]);
+});
+
+test("fizzBuzz(0) should return []", () => {
+  expect(fizzBuzz(0)).toStrictEqual([]);
+});
+
+test("fizzBuzz(-1) should throw type error", () => {
+  expect(() => fizzBuzz(-1)).toThrow();
+});
+
+test("fizzBuzz(null) should throw type error", () => {
+  expect(() => fizzBuzz(null)).toThrow();
+});
+
+test("fizzBuzz([]) should throw type error", () => {
+  expect(() => fizzBuzz([])).toThrow();
+});
+
+test("fizzBuzz({}}) should throw type error", () => {
+  expect(() => fizzBuzz({})).toThrow();
+});
+
+test('fizzBuzz("   ") should throw type error', () => {
+  expect(() => fizzBuzz("   ")).toThrow();
+});

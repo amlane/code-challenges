@@ -21,9 +21,13 @@ I used `var` for `result` rather than `const` because the array is mutated as it
 */
 
 function fizzBuzz(n) {
+  var num = typeof n === "string" && n.trim() !== "" ? Number(n) : n;
+
+  if (!Number.isInteger(num) || num < 0) throw new TypeError(`error`);
+
   var result = [];
 
-  for (let i = 1; i <= n; i++) {
+  for (let i = 1; i <= num; i++) {
     let str = "";
     if (i % 3 === 0) str += "Fizz";
     if (i % 5 === 0) str += "Buzz";
