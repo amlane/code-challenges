@@ -23,7 +23,10 @@ I used `var` for `result` rather than `const` because the array is mutated as it
 function fizzBuzz(n) {
   var num = typeof n === "string" && n.trim() !== "" ? Number(n) : n;
 
-  if (!Number.isInteger(num) || num < 0) throw new TypeError(`error`);
+  if (!Number.isInteger(num) || num < 0)
+    throw new TypeError(
+      `fizzBuzz excepts argument to be number or str rep of numberfizzBuzz expects a non-negative integer or numeric string. Received ${typeof n}: ${String(n)}`,
+    );
 
   var result = [];
 
