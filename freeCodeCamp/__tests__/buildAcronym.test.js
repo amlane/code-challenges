@@ -26,6 +26,18 @@ test('buildAcronym("By the way") should return "BTW"', () => {
   expect(buildAcronym("By the way")).toBe("BTW");
 });
 
+test('buildAcronym(" By the way") should return "BTW" (handles whitespace at beginning)', () => {
+  expect(buildAcronym(" By the way")).toBe("BTW");
+});
+
+test('buildAcronym("") should return ""', () => {
+  expect(buildAcronym("")).toBe("");
+});
+
+test('buildAcronym("An    Apple  a  Day") should return ""', () => {
+  expect(buildAcronym("An    Apple  a  Day")).toBe("AAD");
+});
+
 test('buildAcronym("An unstoppable herd of waddling penguins overtakes the icy mountains and sings happily") should return "AUHWPOTIMSH"', () => {
   expect(
     buildAcronym(

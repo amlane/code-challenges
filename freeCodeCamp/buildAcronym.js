@@ -19,8 +19,8 @@ buildAcronym("An unstoppable herd of waddling penguins overtakes the icy mountai
 
 /*
 Additional considerations I would take:
-- Spec says "The acronym should consist of the first letter of each word capitalized, unless otherwise noted" but there are no test cases where it is otherwise noted. For now I have just assumed always capitalized but I would ask for clarification or test cases where lowercase would be needed.
-- Since any time a string is mutated in JavaScript, it creates a new string, I decided to uppercase everything at the end at the same time, choosing performance over granulatity.
+- Spec says "The acronym should consist of the first letter of each word capitalized, unless otherwise noted" but there are no test cases where it is otherwise noted. For now I have just assumed always capitalized but I would ask for clarification or test cases where lowercase would be needed. For example, "Department of Defense" would return "DD" based on the spec. Is that expected behavior or would you expect "DoD"?
+- Since any time a string is mutated in JavaScript, it creates a new string, I decided to uppercase everything at the end at the same time, choosing simplicity since the spec only provided uppercase examples. If there are cases where casing should not be uppercase, this would need to be moved inside the map. 
 */
 
 function buildAcronym(str) {
@@ -28,11 +28,12 @@ function buildAcronym(str) {
     throw new TypeError(
       `buildAcronym expects string. Received: ${String(str)} ${typeof str}`,
     );
-  const SKIP = ["a", "for", "an", "and", "by", "of"];
-  return str
+  const SKIP = new Set(["a", "for", "an", "and", "by", "of"]);
+  const cleanedStr = str.trim();
+  return cleanedStr
     .split(" ")
     .map((word, i) => {
-      return i !== 0 && SKIP.indexOf(word) > -1 ? "" : word.charAt(0);
+      return i !== 0 && SKIP.has(word) ? "" : word.charAt(0);
     })
     .join("")
     .toUpperCase();
