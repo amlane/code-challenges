@@ -95,7 +95,7 @@ function secretEntrance(rotations) {
     }
 
     if (dir === "L") {
-      curr = curr - num;
+      curr -= num;
       while (curr < 0) curr += 100;
     }
     if (curr === 0) count++;

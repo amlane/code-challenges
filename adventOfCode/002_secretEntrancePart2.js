@@ -27,3 +27,40 @@ Be careful: if the dial were pointing at 50, a single rotation like R1000 would 
 
 Using password method 0x434C49434B, what is the password to open the door?
 */
+
+function secretEntrance(rotations) {
+  let count = 0;
+  // dial starts at 50
+  let position = 50;
+
+  const list = rotations.split("\n");
+
+  list.forEach((rotation) => {
+    var dir = rotation.slice(0, 1).toUpperCase();
+    var num = Number(rotation.slice(1));
+
+    for (let i = 0; i < num; i++) {
+      if (dir === "R") position += 1;
+      if (dir === "L") position -= 1;
+      if (position === 100) position = 0;
+      if (position === -1) position = 99;
+      if (position === 0) count++;
+    }
+  });
+
+  return count;
+}
+
+let input;
+
+const fs = require("fs");
+
+try {
+  const data = fs.readFileSync("input.txt", "utf8");
+  //console.log(data);
+  input = data;
+} catch (err) {
+  console.error("Error reading file:", err);
+}
+
+console.log(secretEntrance(input));
